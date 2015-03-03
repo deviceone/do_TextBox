@@ -1,0 +1,6 @@
+D:\MyWork\designer_comp\do_TextBox\src\designer\do_TextBox\do_TextBox\bin\Debug\doUIViewDesign.TextBox.dll
+D:\MyWork\designer_comp\do_TextBox\src\designer\do_TextBox\do_TextBox\bin\Debug\doUIViewDesign.TextBox.pdb
+D:\MyWork\designer_comp\do_TextBox\src\designer\do_TextBox\do_TextBox\bin\Debug\doControlLib.dll
+D:\MyWork\designer_comp\do_TextBox\src\designer\do_TextBox\do_TextBox\obj\Debug\do_TextBox.csprojResolveAssemblyReference.cache
+D:\MyWork\designer_comp\do_TextBox\src\designer\do_TextBox\do_TextBox\obj\Debug\doUIViewDesign.TextBox.dll
+D:\MyWork\designer_comp\do_TextBox\src\designer\do_TextBox\do_TextBox\obj\Debug\doUIViewDesign.TextBox.pdb
