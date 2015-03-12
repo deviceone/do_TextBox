@@ -65,14 +65,13 @@
 }
 - (void)change_fontColor:(NSString *)newValue{
     [self setTextColor:[doUIModuleHelper GetColorFromString:newValue :[UIColor blackColor]]];
-    
 }
 - (void)change_fontSize:(NSString *)newValue{
     UIFont * font = self.font;
     if (font == nil) {
-        font = [UIFont systemFontOfSize:13];
+        font = [UIFont systemFontOfSize:[[_model GetProperty:@"fontSize"].DefaultValue intValue]];
     }
-    int _intFontSize = [[doTextHelper Instance] StrToInt:newValue :9];
+    int _intFontSize = [doUIModuleHelper GetDeviceFontSize:[[doTextHelper Instance] StrToInt:newValue :[[_model GetProperty:@"fontSize"].DefaultValue intValue]] :_model.XZoom :_model.YZoom];
     self.font = [font fontWithSize:_intFontSize];//z012
     _placeholderTextView.font = self.font;
     
