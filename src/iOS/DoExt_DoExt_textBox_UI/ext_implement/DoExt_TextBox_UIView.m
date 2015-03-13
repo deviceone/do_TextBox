@@ -17,7 +17,7 @@
 #import "doIPage.h"
 #import "doDefines.h"
 
-@implementation DoExt_TextBox_View
+@implementation DoExt_TextBox_UIView
 #pragma mark - doIUIModuleView协议方法（必须）
 //引用Model对象
 - (void) LoadView: (doUIModule *) _doUIModule
