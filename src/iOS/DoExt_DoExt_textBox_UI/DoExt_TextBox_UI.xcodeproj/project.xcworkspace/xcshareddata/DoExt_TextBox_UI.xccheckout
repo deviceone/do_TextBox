@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>534EDB5F-E604-40C6-8EC6-37DA61261AF3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DoExt_TextBox_UI</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>445CA98E3A3AD2092E7E2619C1CBA457E7811D8C</key>
+		<string>https://github.com/deviceone/do_TextBox.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>src/iOS/DoExt_DoExt_textBox_UI/DoExt_TextBox_UI.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>445CA98E3A3AD2092E7E2619C1CBA457E7811D8C</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/deviceone/do_TextBox.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>445CA98E3A3AD2092E7E2619C1CBA457E7811D8C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>445CA98E3A3AD2092E7E2619C1CBA457E7811D8C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>do_TextBox</string>
+		</dict>
+	</array>
+</dict>
+</plist>

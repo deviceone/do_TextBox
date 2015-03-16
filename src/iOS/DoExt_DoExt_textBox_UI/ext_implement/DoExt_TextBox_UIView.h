@@ -11,7 +11,7 @@
 #import "DoExt_TextBox_UIModel.h"
 #import "doIUIModuleView.h"
 
-@interface DoExt_TextBox_View : UITextView<DoExt_TextBox_IView,doIUIModuleView,UITextViewDelegate>
+@interface DoExt_TextBox_UIView : UITextView<DoExt_TextBox_IView,doIUIModuleView,UITextViewDelegate>
 //可根据具体实现替换UIView
 {
     @private
