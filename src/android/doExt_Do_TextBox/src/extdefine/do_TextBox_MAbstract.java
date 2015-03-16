@@ -5,9 +5,9 @@ import core.object.DoProperty;
 import core.object.DoProperty.PropertyDataType;
 
 
-public abstract class Do_TextBox_MAbstract extends DoUIModule{
+public abstract class do_TextBox_MAbstract extends DoUIModule{
 
-	protected Do_TextBox_MAbstract() throws Exception {
+	protected do_TextBox_MAbstract() throws Exception {
 		super();
 	}
 	

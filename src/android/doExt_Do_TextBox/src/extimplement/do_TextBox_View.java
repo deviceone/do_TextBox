@@ -15,8 +15,8 @@ import core.interfaces.DoIScriptEngine;
 import core.interfaces.DoIUIModuleView;
 import core.object.DoInvokeResult;
 import core.object.DoUIModule;
-import extdefine.Do_TextBox_IMethod;
-import extdefine.Do_TextBox_MAbstract;
+import extdefine.do_TextBox_IMethod;
+import extdefine.do_TextBox_MAbstract;
 
 /**
  * 自定义扩展UIView组件实现类，此类必须继承相应VIEW类，并实现DoIUIModuleView,Do_TextBox_IMethod接口；
@@ -25,14 +25,14 @@ import extdefine.Do_TextBox_MAbstract;
  * 参数解释：@_messageName字符串事件名称，@jsonResult传递事件参数对象； 获取DoInvokeResult对象方式new
  * DoInvokeResult(this.model.getUniqueKey());
  */
-public class Do_TextBox_View extends EditText implements DoIUIModuleView, Do_TextBox_IMethod {
+public class do_TextBox_View extends EditText implements DoIUIModuleView, do_TextBox_IMethod {
 
 	/**
 	 * 每个UIview都会引用一个具体的model实例；
 	 */
-	private Do_TextBox_MAbstract model;
+	private do_TextBox_MAbstract model;
 
-	public Do_TextBox_View(Context context) {
+	public do_TextBox_View(Context context) {
 		super(context);
 		this.setSingleLine(false);
 		this.setPadding(1, 0, 1, 0);
@@ -45,7 +45,7 @@ public class Do_TextBox_View extends EditText implements DoIUIModuleView, Do_Tex
 	 */
 	@Override
 	public void loadView(DoUIModule _doUIModule) throws Exception {
-		this.model = (Do_TextBox_MAbstract) _doUIModule;
+		this.model = (do_TextBox_MAbstract) _doUIModule;
 		this.addTextChangedListener(textWatcher);
 	}
 
