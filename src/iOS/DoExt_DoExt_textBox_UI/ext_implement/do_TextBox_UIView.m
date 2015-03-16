@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 DoExt. All rights reserved.
 //
 
-#import "DoExt_TextBox_UIView.h"
+#import "do_TextBox_UIView.h"
 
 #import "doInvokeResult.h"
 #import "doIPage.h"
@@ -17,7 +17,7 @@
 #import "doIPage.h"
 #import "doDefines.h"
 
-@implementation DoExt_TextBox_UIView
+@implementation do_TextBox_UIView
 #pragma mark - doIUIModuleView协议方法（必须）
 //引用Model对象
 - (void) LoadView: (doUIModule *) _doUIModule

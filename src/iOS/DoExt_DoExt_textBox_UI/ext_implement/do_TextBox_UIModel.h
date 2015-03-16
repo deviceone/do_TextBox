@@ -7,6 +7,6 @@
 //
 #import "doUIModule.h"
 
-@interface DoExt_TextBox_UIModel : doUIModule
+@interface do_TextBox_UIModel : doUIModule
 
 @end
