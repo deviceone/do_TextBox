@@ -130,6 +130,10 @@
 - (void)change_maxLength:(NSString *)newValue
 {
     maxLength = [[doTextHelper Instance] StrToInt:newValue :0];
+    NSString *str = self.text;
+    if(maxLength < str.length)
+        self.text = [str substringToIndex:maxLength];
+
 }
 #pragma mark - private mothed
 - (void) registerForKeyboardNotifications
