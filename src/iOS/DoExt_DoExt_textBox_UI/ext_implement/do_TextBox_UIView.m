@@ -254,7 +254,7 @@
 - (void)textViewChanged:(id)sender
 {
     doInvokeResult *_invokeResult = [[doInvokeResult alloc]init:_model.UniqueKey];
-    [_model.EventCenter FireEvent:@"textChanged":_invokeResult];
+    [_model.EventCenter FireEvent:@"changed":_invokeResult];
     [self OnTextChanged:self];
     [_invokeResult SetResultText:self.text];
     [_model SetPropertyValue:@"text" :self.text];
