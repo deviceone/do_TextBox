@@ -18,6 +18,10 @@
 #import "doDefines.h"
 
 @implementation do_TextBox_UIView
+{
+    NSString *_myFontStyle;
+    NSString *_oldFontStyel;
+}
 #pragma mark - doIUIModuleView协议方法（必须）
 //引用Model对象
 - (void) LoadView: (doUIModule *) _doUIModule
@@ -34,13 +38,13 @@
     _placeholderTextView.backgroundColor = [UIColor clearColor];
     _placeholderTextView.frame = CGRectMake(0, 0,[[doTextHelper Instance] StrToDouble:[_model GetPropertyValue:@"width"]:0],[[doTextHelper Instance] StrToDouble:[_model GetPropertyValue:@"height"]:0]);
     _placeholderTextView.textColor = [UIColor grayColor];
+    [self change_fontSize:[_model GetProperty:@"fontSize"].DefaultValue];
     [self addSubview:_placeholderTextView];
 }
 //销毁所有的全局对象
 - (void) OnDispose
 {
-    _model = nil;
-    //自定义的全局属性
+    _myFontStyle = nil;
 }
 //实现布局
 - (void) OnRedraw
@@ -62,6 +66,8 @@
  */
 - (void)change_text:(NSString *)newValue{
     [self setText:newValue];
+    if(_myFontStyle)
+        [self change_fontStyle:_myFontStyle];
 }
 - (void)change_fontColor:(NSString *)newValue{
     [self setTextColor:[doUIModuleHelper GetColorFromString:newValue :[UIColor blackColor]]];
@@ -74,37 +80,46 @@
     int _intFontSize = [doUIModuleHelper GetDeviceFontSize:[[doTextHelper Instance] StrToInt:newValue :[[_model GetProperty:@"fontSize"].DefaultValue intValue]] :_model.XZoom :_model.YZoom];
     self.font = [font fontWithSize:_intFontSize];//z012
     _placeholderTextView.font = self.font;
-    
 }
 - (void)change_fontStyle:(NSString *)newValue{
-    //z012
-    if ([UIDevice currentDevice].systemVersion.floatValue >=6.0) {
-        NSRange range = {0,[self.text length]};
-        NSMutableAttributedString *str = [self.attributedText mutableCopy];
-        [str removeAttribute:NSUnderlineStyleAttributeName range:range];
-        self.attributedText = str;
-    }
-    float fontSize = self.font.pointSize;//The receiver’s point size, or the effective vertical point size for a font with a nonstandard matrix. (read-only)
+    _myFontStyle = [NSString stringWithFormat:@"%@",newValue];
+    if (self.text==nil || [self.text isEqualToString:@""]) return;
+    NSRange range = {0,[self.text length]};
+    NSMutableAttributedString *str = [self.attributedText mutableCopy];
+    [str removeAttribute:NSUnderlineStyleAttributeName range:range];
+    self.attributedText = str;
     
-    if([newValue isEqualToString:@"normal"]){
-        self.font = [UIFont systemFontOfSize:fontSize];
-    }else if([newValue isEqualToString:@"bold"]){
-        self.font = [UIFont boldSystemFontOfSize:fontSize];
-    }else if([newValue isEqualToString:@"italic"]){
-        self.font = [UIFont italicSystemFontOfSize:fontSize];
-    }else if([newValue isEqualToString:@"underline"]){
-        if (self.text == nil) {
-            return;
-        }
-        if([UIDevice currentDevice].systemVersion.floatValue >= 6.0){
-            NSMutableAttributedString * content = [[NSMutableAttributedString alloc]initWithString:self.text];
-            NSRange contentRange = {0,[content length]};
-            [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
-            self.attributedText = content;
-        }else{
-            self.font = [UIFont systemFontOfSize:fontSize];
-        }
+    float fontSize = self.font.pointSize;
+    if([newValue isEqualToString:@"normal"])
+        [self setFont:[UIFont systemFontOfSize:fontSize]];
+    else if([newValue isEqualToString:@"bold"])
+    {
+        if([_oldFontStyel isEqualToString:@"italic"])
+            [self setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:fontSize]];
+        else
+            [self setFont:[UIFont boldSystemFontOfSize:fontSize]];
     }
+    else if([newValue isEqualToString:@"italic"])
+    {
+        if([_oldFontStyel isEqualToString:@"bold"])
+            [self setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:fontSize]];
+        else
+            [self setFont:[UIFont italicSystemFontOfSize:fontSize]];
+    }
+    else if([newValue isEqualToString:@"underline"])
+    {
+        NSMutableAttributedString *content = [self.attributedText mutableCopy];
+        NSRange contentRange = {0,[content length]};
+        [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
+        self.attributedText = content;
+        [content endEditing];
+    }
+    else
+    {
+        NSString *mesg = [NSString stringWithFormat:@"不支持字体:%@",newValue];
+        [NSException raise:@"do_TextBox" format:mesg,@""];
+    }
+    _oldFontStyel = newValue;
 }
 
 - (void)change_hint:(NSString *)newValue{
@@ -115,6 +130,10 @@
 - (void)change_maxLength:(NSString *)newValue
 {
     maxLength = [[doTextHelper Instance] StrToInt:newValue :0];
+    NSString *str = self.text;
+    if(maxLength < str.length)
+        self.text = [str substringToIndex:maxLength];
+
 }
 #pragma mark - private mothed
 - (void) registerForKeyboardNotifications
@@ -251,12 +270,10 @@
         [UIView animateWithDuration:0.3 animations:^{
             curController.view.frame = CGRectMake(0, 0, curController.view.frame.size.width, curController.view.frame.size.height);
         }];
-        
         return NO;
     }
     //source 原来的文本
     //newtxt 改变后的文本
-    
     NSMutableString *newtxt = [NSMutableString stringWithString:textView.text];
     NSString *sourceText = textView.text;
     [newtxt replaceCharactersInRange:range withString:text];
@@ -347,5 +364,4 @@
     //获取model对象
     return _model;
 }
-
 @end

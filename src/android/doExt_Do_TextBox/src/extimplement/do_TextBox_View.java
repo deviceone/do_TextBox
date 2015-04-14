@@ -6,6 +6,7 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.EditText;
 import core.helper.DoTextHelper;
@@ -46,6 +47,7 @@ public class do_TextBox_View extends EditText implements DoIUIModuleView, do_Tex
 	@Override
 	public void loadView(DoUIModule _doUIModule) throws Exception {
 		this.model = (do_TextBox_MAbstract) _doUIModule;
+		this.setTextSize(TypedValue.COMPLEX_UNIT_PX, DoUIModuleHelper.getDeviceFontSize(_doUIModule, "9"));
 		this.addTextChangedListener(textWatcher);
 	}
 
