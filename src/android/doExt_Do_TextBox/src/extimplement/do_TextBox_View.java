@@ -119,7 +119,7 @@ public class do_TextBox_View extends EditText implements DoIUIModuleView, do_Tex
 	private void doTextBoxView_TextChanged() {
 		if (this.model.getCurrentPage().getScriptEngine() != null) { // 去除脚本还未加载时NULL的情况
 			DoInvokeResult _invokeResult = new DoInvokeResult(this.model.getUniqueKey());
-			this.model.getEventCenter().fireEvent("changed", _invokeResult);
+			this.model.getEventCenter().fireEvent("textChanged", _invokeResult);
 		}
 	}
 
