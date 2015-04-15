@@ -40,6 +40,7 @@
     _placeholderTextView.textColor = [UIColor grayColor];
     [self change_fontSize:[_model GetProperty:@"fontSize"].DefaultValue];
     [self addSubview:_placeholderTextView];
+    self.backgroundColor = [UIColor clearColor];
 }
 //销毁所有的全局对象
 - (void) OnDispose
