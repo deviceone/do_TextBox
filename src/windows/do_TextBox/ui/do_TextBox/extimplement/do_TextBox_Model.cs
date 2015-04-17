@@ -24,7 +24,7 @@ namespace do_TextBox.extimplement
             this.RegistProperty(new doProperty("foreColor", PropertyDataType.String, "000000FF", false));
             this.RegistProperty(new doProperty("fontSize", PropertyDataType.String, "9", true));
             this.RegistProperty(new doProperty("fontStyle", PropertyDataType.String, "normal", false));
-            this.RegistProperty(new doProperty("maxLength", PropertyDataType.Number, "100", true));
+            this.RegistProperty(new doProperty("maxLength", PropertyDataType.Number, "1000", true));
             this.RegistProperty(new doProperty("hint", PropertyDataType.String, "", false));
         }
         public override async Task<bool> InvokeAsyncMethod(string _methodName, doCore.Helper.JsonParse.doJsonNode _dictParas, doCore.Interface.doIScriptEngine _scriptEngine, string _callbackFuncName)

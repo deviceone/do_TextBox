@@ -49,6 +49,15 @@ namespace do_TextBox.extimplement
             this.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Left;
             this.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Top;
             this.Content = teb;
+            //this.Width = Convert.ToDouble(this.model.GetPropertyValue("width"));
+            //this.Height = Convert.ToDouble(this.model.GetPropertyValue("height"));
+            teb.TextChanged += teb_TextChanged;
+        }
+
+        void teb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            doInvokeResult _invokeResult = new doInvokeResult(this.model.UniqueKey);
+            this.model.EventCenter.FireEvent("textChanged", _invokeResult);
         }
 
         public doUIModule GetModel()
@@ -69,7 +78,7 @@ namespace do_TextBox.extimplement
         /// 属性赋值成功后被调用，可以根据组件定义相关属性值修改UIView可视化操作；
         /// </summary>
         /// <param name="_changedValues">属性集（key名称、value值）</param>
-        public async void OnPropertiesChanged(Dictionary<string, string> _changedValues)
+        public  void OnPropertiesChanged(Dictionary<string, string> _changedValues)
         {
             doUIModuleHelper.HandleBasicViewProperChanged(this.model, _changedValues);
             if (_changedValues.Keys.Contains("text"))
@@ -82,31 +91,35 @@ namespace do_TextBox.extimplement
             }
             if (_changedValues.Keys.Contains("fontSize"))
             {
-                this.FontSize = Convert.ToDouble(_changedValues["fontSize"]);
+                  (this.Content as TextBox).FontSize = Convert.ToDouble(_changedValues["fontSize"]);
             }
             if (_changedValues.Keys.Contains("fontStyle"))
             {
                 if (_changedValues["fontStyle"].ToLower() == "normal")
                 {
-                    this.FontStyle = FontStyle.Normal;
-                    this.FontWeight = FontWeights.Normal;
+                    (this.Content as TextBox).FontStyle = FontStyle.Normal;
+                    (this.Content as TextBox).FontWeight = FontWeights.Normal;
                 }
                 else if (_changedValues["fontStyle"].ToLower() == "bold")
                 {
-                    this.FontWeight = FontWeights.Bold;
+                    (this.Content as TextBox).FontWeight = FontWeights.Bold;
                 }
                 else if (_changedValues["fontStyle"].ToLower() == "italic")
                 {
-                    this.FontStyle = FontStyle.Italic;
+                    (this.Content as TextBox).FontStyle = FontStyle.Italic;
                 }
             }
             if (_changedValues.Keys.Contains("maxLength"))
             {
-                this.MaxWidth = Convert.ToDouble(_changedValues["maxLength"]);
+                (this.Content as TextBox).MaxWidth = Convert.ToDouble(_changedValues["maxLength"]);
             }
             if (_changedValues.Keys.Contains("hint"))
             {
                 (this.Content as TextBox).PlaceholderText = _changedValues["hint"];
+            }
+            if (_changedValues.Keys.Contains("bgColor"))
+            {
+                (this.Content as TextBox).Background = doUIModuleHelper.GetColorFromString(_changedValues["bgColor"], new SolidColorBrush());
             }
         }
         /// <summary>
